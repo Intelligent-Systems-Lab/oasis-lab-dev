@@ -93,9 +93,10 @@ RUN apt-get update && apt-get -y upgrade &&\
 
 #RUN mkdir /var/run/sshd
 RUN echo 'root:oasispc' | chpasswd
-RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config &&\
+RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config &&\
     sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config
 
+#RUN /etc/init.d/ssh start
 
 # Install oasis-core
 
@@ -103,9 +104,6 @@ RUN wget https://github.com/oasisprotocol/oasis-core/releases/download/v20.10/oa
     tar zxvf oasis_core_20.10_linux_amd64.tar.gz &&\
     cp oasis_core_20.10_linux_amd64/oasis-* /usr/local/bin/
 
-RUN apt-get update && apt-get install -y openssh-server net-tools &&\
-    /etc/init.d/ssh start &&\
-    echo 'root:oasis' | chpasswd
-
-
 RUN echo 'export PS1="\[\e[32m\][\[\e[m\]\[\e[31m\]\u\[\e[m\]\[\e[33m\]@\[\e[m\]\[\e[32m\]\h\[\e[m\]:\[\e[36m\]\w\[\e[m\]\[\e[32m\]]\[\e[m\]\[\e[32;47m\]\\$\[\e[m\] "' >> /root/.bashrc
+
+ENTRYPOINT service ssh restart && bash
