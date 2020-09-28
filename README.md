@@ -1,7 +1,7 @@
 # oasis-lab-dev
 
 
-```
+```mermaid
 gantt
 
 dateFormat YYYY-MM-DD
