@@ -1,5 +1,10 @@
 # Run local-testnet with single Validator Node
 
+
+## RUN 
+
+[official document](https://docs.oasis.dev/oasis-core/development-setup/running-tests-and-development-networks/single-validator-node-network)  
+
 ```bash=
 STATIC_IP=$(hostname -I)
 STATIC_IP=${STATIC_IP% }
@@ -51,3 +56,10 @@ oasis-node \
   --debug.allow_test_keys \
   --log.level debug
 ```
+
+## Next
+
+Goal auto generate local-test with nodes as validators.
+ 
+1. auto delegate for some nodes
+2. chain explorer 
