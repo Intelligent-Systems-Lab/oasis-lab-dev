@@ -5,35 +5,54 @@
 
 [official document](https://docs.oasis.dev/oasis-core/development-setup/running-tests-and-development-networks/single-validator-node-network)  
 
-```bash=
-STATIC_IP=$(hostname -I)
-STATIC_IP=${STATIC_IP% }
+### Steps 
 
+`Create folders structure` > `Init & register entity` > `Init node` > `Update entity` > `Init genesis` > `Launch genesis node`
+
+```bash=
+# Get local ip (127.0.0.2  in docker) 
+LOCAL_IP=$(hostname -I)
+LOCAL_IP=${STATIC_IP% }
+
+```
+Create folders structure
+```bash=  
 mkdir -m700 -p /localnet/{entity,node,genesis}
 
 cd /localnet
 
+```
+
+Init & register entity
+```bash=   
 cd entity
 
 oasis-node registry entity init --signer.backend file --signer.dir .
+```
 
+Init node
+```bash=   
 cd ../node
 
 oasis-node registry node init \
   --signer.backend file \
   --signer.dir /localnet/entity \
-  --node.consensus_address $STATIC_IP:26656 \
+  --node.consensus_address $LOCAL_IP:26656 \
   --node.is_self_signed \
   --node.role validator
-  
+```
+Update entity
+```bash=  
 cd ../entity
 
 oasis-node registry entity update \
   --signer.backend file \
   --signer.dir /localnet/entity \
   --entity.node.descriptor /localnet/node/node_genesis.json
-  
+```
 
+Init genesis
+```bash=
 cd ../genesis
 
 oasis-node genesis init \
@@ -46,7 +65,10 @@ oasis-node genesis init \
   --registry.debug.allow_unroutable_addresses \
   --staking.token_symbol QAQ
   
-  
+```
+
+Launch genesis node
+```bash=
 oasis-node \
   --datadir /localnet/node \
   --genesis.file /localnet/genesis/genesis.json \
