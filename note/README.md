@@ -1,3 +1,15 @@
+# Outline
+
+[Part 0 : Overview](note/00_overview.md)
+
+[Part 1 : Run a Validator Node](note/01_validator.md)
+
+[Part 2 : Deploying a RunTime](note/02_runtime.md)
+
+[Part 3 : Run a local testnet](note/03_local-testnet.md)
+
+
+
 # Part 1 : Run a Validator Node
 
 https://docs.oasis.dev/general/run-a-node/set-up-your-node/running-a-node

@@ -106,4 +106,10 @@ RUN wget https://github.com/oasisprotocol/oasis-core/releases/download/v20.10/oa
 
 RUN echo 'export PS1="\[\e[32m\][\[\e[m\]\[\e[31m\]\u\[\e[m\]\[\e[33m\]@\[\e[m\]\[\e[32m\]\h\[\e[m\]:\[\e[36m\]\w\[\e[m\]\[\e[32m\]]\[\e[m\]\[\e[32;47m\]\\$\[\e[m\] "' >> /root/.bashrc
 
+# Sometimes the json generated in the process file is barely reading. This small can reformat it.
+COPY ./rejq.sh /rejq.sh
+
+RUN chmod +x rejq.sh \
+    export "alias rejq='/./rejq.sh'" >> ~/.bashrc
+
 ENTRYPOINT service ssh restart && bash
