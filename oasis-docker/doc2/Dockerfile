@@ -109,7 +109,8 @@ RUN echo 'export PS1="\[\e[32m\][\[\e[m\]\[\e[31m\]\u\[\e[m\]\[\e[33m\]@\[\e[m\]
 # Sometimes the json generated in the process file is barely reading. This small can reformat it.
 COPY ./rejq.sh /rejq.sh
 
-RUN chmod +x rejq.sh \
-    export "alias rejq='/./rejq.sh'" >> ~/.bashrc
+RUN apt install -y jq nano 
+RUN sh -c "chmod +x rejq.sh" 
+RUN echo 'alias rejq=/./rejq.sh' >> /root/.bashrc
 
 ENTRYPOINT service ssh restart && bash
