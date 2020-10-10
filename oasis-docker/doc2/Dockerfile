@@ -82,6 +82,17 @@ RUN wget http://archive.ubuntu.com/ubuntu/pool/main/b/bubblewrap/bubblewrap_0.3.
 
 ##############################################################
 
+# Unsafe Non-SGX Environment
+RUN git clone https://github.com/oasisprotocol/oasis-core.git &&\
+    export OASIS_UNSAFE_SKIP_AVR_VERIFY="1" &&\
+    export OASIS_UNSAFE_SKIP_KM_POLICY="1" &&\
+    make
+
+# RUN export OASIS_UNSAFE_SKIP_AVR_VERIFY="1" &&\
+#     export OASIS_UNSAFE_KM_POLICY_KEYS="1" &&\
+#     export OASIS_UNSAFE_ALLOW_DEBUG_ENCLAVES="1" &&\
+#     make
+
 RUN apt-get update && apt-get install -y openssh-server
 
 
