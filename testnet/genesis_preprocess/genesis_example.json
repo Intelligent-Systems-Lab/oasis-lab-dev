@@ -48,7 +48,8 @@
           "unfreeze_node": 1000,
           "update_keymanager": 1000
         },
-        "max_node_expiration": 2
+        "max_node_expiration": 2,
+        "debug_allow_unroutable_addresses":true 
       }
     },
     "roothash": {
