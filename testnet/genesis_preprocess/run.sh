@@ -12,7 +12,9 @@ echo
 echo "It will create 30 nodes."
 read -p "Press [Enter] to continue... or [Control + c] to stop..."
 
-WORKDIR=/localnet6/
+WORKDIR=/localnet
+
+REPODIR=$(pwd)
 
 NODELIST=/nodelist.txt
 
@@ -189,7 +191,7 @@ run_setup_genesis_env(){
 
     wget https://github.com/Intelligent-Systems-Lab/oasis-lab-dev/raw/master/testnet/genesis_preprocess/genesis_example.json
 
-    python3 /merge.py --genesis_path $WORKDIR/genesis/genesis.json  --example_path $WORKDIR/genesis/genesis_example.json
+    python3 $REPODIR/merge.py --genesis_path $WORKDIR/genesis/genesis.json  --example_path $WORKDIR/genesis/genesis_example.json
 
     #bash /./rejq.sh $WORKDIR/genesis/genesis.json
     rm genesis.json genesis_example.json
