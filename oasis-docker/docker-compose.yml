@@ -1,0 +1,285 @@
+version: "3.8"
+
+services: 
+    oasis-gene:
+        image: tony92151/oasis-docker
+        volumes: 
+            - oasis-vol1:/oasis-vol
+        networks: 
+            - oasis-net
+
+        stdin_open: true
+        tty: true
+    #################################################
+    oasis-node01:
+        image: tony92151/oasis-docker
+        volumes: 
+            - oasis-vol1:/oasis-vol
+        networks: 
+            - oasis-net
+
+        depends_on: 
+            - oasis-gene
+
+        stdin_open: true
+        tty: true
+    #################################################
+    oasis-node02:
+        image: tony92151/oasis-docker
+        volumes: 
+            - oasis-vol1:/oasis-vol
+        networks: 
+            - oasis-net
+
+        depends_on: 
+            - oasis-node01
+
+        stdin_open: true
+        tty: true
+    #################################################
+    oasis-node03:
+        image: tony92151/oasis-docker
+        volumes: 
+            - oasis-vol1:/oasis-vol
+        networks: 
+            - oasis-net
+
+        depends_on: 
+            - oasis-node02
+
+        stdin_open: true
+        tty: true
+
+    #################################################
+    oasis-node04:
+        image: tony92151/oasis-docker
+        volumes: 
+            - oasis-vol1:/oasis-vol
+        networks: 
+            - oasis-net
+
+        depends_on: 
+            - oasis-node03
+
+        stdin_open: true
+        tty: true
+    #################################################
+    oasis-node05:
+        image: tony92151/oasis-docker
+        volumes: 
+            - oasis-vol1:/oasis-vol
+        networks: 
+            - oasis-net
+
+        depends_on: 
+            - oasis-node04
+
+        stdin_open: true
+        tty: true
+    #################################################
+    oasis-node06:
+        image: tony92151/oasis-docker
+        volumes: 
+            - oasis-vol1:/oasis-vol
+        networks: 
+            - oasis-net
+
+        depends_on: 
+            - oasis-node05
+
+        stdin_open: true
+        tty: true
+    #################################################
+    oasis-node07:
+        image: tony92151/oasis-docker
+        volumes: 
+            - oasis-vol1:/oasis-vol
+        networks: 
+            - oasis-net
+
+        depends_on: 
+            - oasis-node06
+
+        stdin_open: true
+        tty: true
+    #################################################
+    oasis-node08:
+        image: tony92151/oasis-docker
+        volumes: 
+            - oasis-vol1:/oasis-vol
+        networks: 
+            - oasis-net
+
+        depends_on: 
+            - oasis-node07
+
+        stdin_open: true
+        tty: true
+    #################################################
+    oasis-node09:
+        image: tony92151/oasis-docker
+        volumes: 
+            - oasis-vol1:/oasis-vol
+        networks: 
+            - oasis-net
+
+        depends_on: 
+            - oasis-node08
+
+        stdin_open: true
+        tty: true
+    #################################################
+    oasis-node10:
+        image: tony92151/oasis-docker
+        volumes: 
+            - oasis-vol1:/oasis-vol
+        networks: 
+            - oasis-net
+
+        depends_on: 
+            - oasis-node09
+
+        stdin_open: true
+        tty: true
+    #################################################
+    oasis-node11:
+        image: tony92151/oasis-docker
+        volumes: 
+            - oasis-vol1:/oasis-vol
+        networks: 
+            - oasis-net
+
+        depends_on: 
+            - oasis-node10
+
+        stdin_open: true
+        tty: true
+    #################################################
+    oasis-node12:
+        image: tony92151/oasis-docker
+        volumes: 
+            - oasis-vol1:/oasis-vol
+        networks: 
+            - oasis-net
+
+        depends_on: 
+            - oasis-node11
+
+        stdin_open: true
+        tty: true
+    #################################################
+    oasis-node13:
+        image: tony92151/oasis-docker
+        volumes: 
+            - oasis-vol1:/oasis-vol
+        networks: 
+            - oasis-net
+
+        depends_on: 
+            - oasis-node12
+
+        stdin_open: true
+        tty: true
+    #################################################
+    oasis-node14:
+        image: tony92151/oasis-docker
+        volumes: 
+            - oasis-vol1:/oasis-vol
+        networks: 
+            - oasis-net
+
+        depends_on: 
+            - oasis-node13
+
+        stdin_open: true
+        tty: true
+    #################################################
+    oasis-node15:
+        image: tony92151/oasis-docker
+        volumes: 
+            - oasis-vol1:/oasis-vol
+        networks: 
+            - oasis-net
+
+        depends_on: 
+            - oasis-node14
+
+        stdin_open: true
+        tty: true
+    #################################################
+    oasis-node16:
+        image: tony92151/oasis-docker
+        volumes: 
+            - oasis-vol1:/oasis-vol
+        networks: 
+            - oasis-net
+
+        depends_on: 
+            - oasis-node15
+
+        stdin_open: true
+        tty: true
+    #################################################
+    oasis-node17:
+        image: tony92151/oasis-docker
+        volumes: 
+            - oasis-vol1:/oasis-vol
+        networks: 
+            - oasis-net
+
+        depends_on: 
+            - oasis-node16
+
+        stdin_open: true
+        tty: true
+    #################################################
+    oasis-node18:
+        image: tony92151/oasis-docker
+        volumes: 
+            - oasis-vol1:/oasis-vol
+        networks: 
+            - oasis-net
+
+        depends_on: 
+            - oasis-node17
+
+        stdin_open: true
+        tty: true
+    #################################################
+    oasis-node19:
+        image: tony92151/oasis-docker
+        volumes: 
+            - oasis-vol1:/oasis-vol
+        networks: 
+            - oasis-net
+
+        depends_on: 
+            - oasis-node18
+
+        stdin_open: true
+        tty: true
+    #################################################
+    oasis-node20:
+        image: tony92151/oasis-docker
+        volumes: 
+            - oasis-vol1:/oasis-vol
+        networks: 
+            - oasis-net
+
+        depends_on: 
+            - oasis-node19
+
+        stdin_open: true
+        tty: true
+    #################################################
+volumes:
+    oasis-vol1:
+
+networks: 
+    oasis-net:
+        ipam:
+            config:
+              - subnet: 172.100.0.0/16
+
+
+        

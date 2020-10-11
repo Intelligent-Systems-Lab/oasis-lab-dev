@@ -16,7 +16,7 @@
 
 # Set this to where you wish to store node data. The node's artifacts
 # should also be located in this directory.
-datadir: /serverdir/node
+datadir: {{ node_dir }}
 
 # Logging.
 #
@@ -41,14 +41,14 @@ log:
 # Genesis.
 genesis:
   # Path to the genesis file for the current version of the network.
-  file: /serverdir/etc/genesis.json
+  file: {{ genesis.json_dir }}
 
 # Worker configuration.
 worker:
   registration:
     # In order for the node to register itself, the entity.json of the entity
     # used to provision the node must be available on the node.
-    entity: /serverdir/node/entity/entity.json
+    entity: {{ entity.json_dir }}
 
 # Consensus backend.
 consensus:
