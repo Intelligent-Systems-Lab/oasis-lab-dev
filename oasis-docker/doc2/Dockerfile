@@ -83,10 +83,16 @@ RUN wget http://archive.ubuntu.com/ubuntu/pool/main/b/bubblewrap/bubblewrap_0.3.
 ##############################################################
 
 # Unsafe Non-SGX Environment
-RUN git clone https://github.com/oasisprotocol/oasis-core.git &&\
-    export OASIS_UNSAFE_SKIP_AVR_VERIFY="1" &&\
-    export OASIS_UNSAFE_SKIP_KM_POLICY="1" &&\
-    make
+ENV OASIS_UNSAFE_SKIP_AVR_VERIFY="1"
+ENV OASIS_UNSAFE_SKIP_KM_POLICY="1"
+
+RUN wget https://github.com/oasisprotocol/oasis-core/archive/v20.11.1.zip &&\
+    unzip v20.11.1.zip &&\
+    cd oasis-core-20.11.1 &&\
+    make &&\
+    cp go/oasis-net-runner/oasis-net-runner /usr/local/bin/ &&\
+    cp go/oasis-node/oasis-node /usr/local/bin/ &&\
+    cp go/oasis-remote-signer/oasis-remote-signer /usr/local/bin/
 
 # RUN export OASIS_UNSAFE_SKIP_AVR_VERIFY="1" &&\
 #     export OASIS_UNSAFE_KM_POLICY_KEYS="1" &&\
@@ -110,10 +116,9 @@ RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/
 #RUN /etc/init.d/ssh start
 
 # Install oasis-core
-
-RUN wget https://github.com/oasisprotocol/oasis-core/releases/download/v20.10/oasis_core_20.10_linux_amd64.tar.gz &&\
-    tar zxvf oasis_core_20.10_linux_amd64.tar.gz &&\
-    cp oasis_core_20.10_linux_amd64/oasis-* /usr/local/bin/
+#RUN wget https://github.com/oasisprotocol/oasis-core/releases/download/v20.10/oasis_core_20.10_linux_amd64.tar.gz &&\
+#    tar zxvf oasis_core_20.10_linux_amd64.tar.gz &&\
+#    cp oasis_core_20.10_linux_amd64/oasis-* /usr/local/bin/
 
 RUN echo 'export PS1="\[\e[32m\][\[\e[m\]\[\e[31m\]\u\[\e[m\]\[\e[33m\]@\[\e[m\]\[\e[32m\]\h\[\e[m\]:\[\e[36m\]\w\[\e[m\]\[\e[32m\]]\[\e[m\]\[\e[32;47m\]\\$\[\e[m\] "' >> /root/.bashrc
 
