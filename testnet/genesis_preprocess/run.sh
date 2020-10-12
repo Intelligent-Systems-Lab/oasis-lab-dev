@@ -12,7 +12,7 @@ echo
 echo "It will create 30 nodes."
 read -p "Press [Enter] to continue... or [Control + c] to stop..."
 
-WORKDIR=/localnet
+WORKDIR=/oasis-vol/localnet
 
 REPODIR=$(pwd)
 

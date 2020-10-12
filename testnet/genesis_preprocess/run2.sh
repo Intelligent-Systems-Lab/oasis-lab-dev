@@ -11,7 +11,7 @@ echo
 echo "It will set 9 nodes and run it"
 read -p "Press [Enter] to continue... or [Control + c] to stop..."
 
-WORKDIR=/localnet
+WORKDIR=/oasis-vol/localnet
 
 REPODIR=$(pwd)
 
@@ -34,6 +34,7 @@ run_node(){
 
         oasis-node --config ./config.yml >> node.log 2>&1 &
     done
+    sshpass -p 'oasispc' ssh root@172.100.0.5 "cd /oasis-vol/logs && oasis-node --config ./oasis-vol/localnet/nodes/node0001/config.yml >> node0000.log 2>&1 &"
 }
 
 run_set_seed
