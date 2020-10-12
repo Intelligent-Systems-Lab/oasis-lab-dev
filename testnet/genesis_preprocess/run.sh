@@ -55,7 +55,7 @@ run_create_nodes_env(){
         oasis-node registry node init \
             --signer.backend file \
             --signer.dir $WORKDIR/entities/entity$i \
-            --node.consensus_address $LOCAL_IP:26656 \
+            --node.consensus_address $HOST_IP:26656 \
             --node.is_self_signed \
             --node.role validator
     done
@@ -81,16 +81,6 @@ run_setup_genesis_env(){
 
     cd $WORKDIR/genesis
 
-    # oasis-node genesis init \
-    #     --chain.id isltestnet \
-    #     --entity $WORKDIR/entities/entity0000/entity_genesis.json \
-    #     --entity $WORKDIR/entities/entity0001/entity_genesis.json \
-    #     --entity $WORKDIR/entities/entity0002/entity_genesis.json \
-    #     --node $WORKDIR/nodes/node0000/node_genesis.json \
-    #     --node $WORKDIR/nodes/node0001/node_genesis.json \
-    #     --node $WORKDIR/nodes/node0002/node_genesis.json \
-    #     --staking.token_symbol QAQ
-
     oasis-node genesis init \
         --chain.id isltestnet \
         --entity $WORKDIR/entities/entity0000/entity_genesis.json \
@@ -99,21 +89,37 @@ run_setup_genesis_env(){
         --entity $WORKDIR/entities/entity0003/entity_genesis.json \
         --entity $WORKDIR/entities/entity0004/entity_genesis.json \
         --entity $WORKDIR/entities/entity0005/entity_genesis.json \
-        --entity $WORKDIR/entities/entity0006/entity_genesis.json \
-        --entity $WORKDIR/entities/entity0007/entity_genesis.json \
-        --entity $WORKDIR/entities/entity0008/entity_genesis.json \
-        --entity $WORKDIR/entities/entity0009/entity_genesis.json \
         --node $WORKDIR/nodes/node0000/node_genesis.json \
         --node $WORKDIR/nodes/node0001/node_genesis.json \
         --node $WORKDIR/nodes/node0002/node_genesis.json \
         --node $WORKDIR/nodes/node0003/node_genesis.json \
         --node $WORKDIR/nodes/node0004/node_genesis.json \
-        --node $WORKDIR/nodes/node0005/node_genesis.json \
-        --node $WORKDIR/nodes/node0006/node_genesis.json \
-        --node $WORKDIR/nodes/node0007/node_genesis.json \
-        --node $WORKDIR/nodes/node0008/node_genesis.json \
-        --node $WORKDIR/nodes/node0009/node_genesis.json \
+        --node $WORKDIR/nodes/node0004/node_genesis.json \
         --staking.token_symbol QAQ
+
+    # oasis-node genesis init \
+    #     --chain.id isltestnet \
+    #     --entity $WORKDIR/entities/entity0000/entity_genesis.json \
+    #     --entity $WORKDIR/entities/entity0001/entity_genesis.json \
+    #     --entity $WORKDIR/entities/entity0002/entity_genesis.json \
+    #     --entity $WORKDIR/entities/entity0003/entity_genesis.json \
+    #     --entity $WORKDIR/entities/entity0004/entity_genesis.json \
+    #     --entity $WORKDIR/entities/entity0005/entity_genesis.json \
+    #     --entity $WORKDIR/entities/entity0006/entity_genesis.json \
+    #     --entity $WORKDIR/entities/entity0007/entity_genesis.json \
+    #     --entity $WORKDIR/entities/entity0008/entity_genesis.json \
+    #     --entity $WORKDIR/entities/entity0009/entity_genesis.json \
+    #     --node $WORKDIR/nodes/node0000/node_genesis.json \
+    #     --node $WORKDIR/nodes/node0001/node_genesis.json \
+    #     --node $WORKDIR/nodes/node0002/node_genesis.json \
+    #     --node $WORKDIR/nodes/node0003/node_genesis.json \
+    #     --node $WORKDIR/nodes/node0004/node_genesis.json \
+    #     --node $WORKDIR/nodes/node0005/node_genesis.json \
+    #     --node $WORKDIR/nodes/node0006/node_genesis.json \
+    #     --node $WORKDIR/nodes/node0007/node_genesis.json \
+    #     --node $WORKDIR/nodes/node0008/node_genesis.json \
+    #     --node $WORKDIR/nodes/node0009/node_genesis.json \
+    #     --staking.token_symbol QAQ
 
     # rejq is a tool to reformat json file. (see /rejq.sh)
     #rejq $WORKDIR/genesis/genesis.json

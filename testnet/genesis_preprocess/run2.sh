@@ -57,12 +57,12 @@ run_node(){
     echo "After checking nodes. It's time to launch all nodes."
     read -p "Press [Enter] to continue... or [Control + c] to stop..."
 
-    for i in {1..14}; do 
+    for i in {1..5}; do 
 
     v=$(printf "%04d" $i)
     #echo $v
     sleep 0.1
-    sshpass -p 'oasispc' ssh -o StrictHostKeyChecking=no root@172.100.0.${LIST[i]} "oasis-node --config ./oasis-vol/localnet/nodes/node$v/config.yml >> /oasis-vol/localnet/logs/node$v.log 2>&1 &"
+    sshpass -p 'oasispc' ssh -o StrictHostKeyChecking=no root@172.100.0.${LIST[i]} "oasis-node --config /oasis-vol/localnet/nodes/node$v/config.yml >> /oasis-vol/localnet/logs/node$v.log 2>&1 &"
     echo "DEPLOY ${green} node$v ${reset} to ${green}172.100.0.${LIST[i]} ${reset}"
     #v=10#$i
     # v=${LIST[i]}
