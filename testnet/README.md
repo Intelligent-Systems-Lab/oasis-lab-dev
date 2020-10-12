@@ -41,4 +41,24 @@ bash run2.sh
 # paste seed address here
 ```
 
+```bash=
+
+oasis-node stake pubkey2address --public_key <pub_key>
+
+oasis-node stake account info -a $ADDR --stake.account.address <addr>
+
+oasis-node stake account gen_transfer \
+  "${TX_FLAGS[@]}" \
+  --stake.amount 10000000000 \
+  --stake.transfer.destination oasis1qqv04qjjr0wf8vpd09dxjpn96npne927vg5kaduu \
+  --transaction.file tx_transfer.json \
+  --transaction.nonce 0 \
+  --transaction.fee.gas 2000 \
+  --transaction.fee.amount 2000 \
+  --genesis.file  /oasis-vol/localnet/genesis/genesis.json \
+  --signer.dir /oasis-vol/localnet/entities/entity0000
+
+oasis-node consensus submit_tx   -a $ADDR   --transaction.file tx_transfer.json
+```
+
 
