@@ -31,38 +31,51 @@ run_set_seed(){
 
 red=`tput setaf 1`
 green=`tput setaf 2`
+reset=`tput sgr0`
 
 run_check_node_alive(){
+
     touch $WORKDIR/node_deploy_list.txt
     DL=$WORKDIR/node_deploy_list.txt
 
     LIST=()
 
-    for i in {0001..0030}; do
-        if [ "ping -c 1 172.100.0.${i:2}" ]  
+    for i in {2..30}; do
+        if ping -c 1 -W 1 172.100.0.$i >> /tmp/ptmp.tmp
         then
-            echo "HOST : 172.100.0.${i:2} ... ${green}alive"
-            LIST+=(172.100.0.${i:2})
+            echo "HOST : 172.100.0.$i ... ${green}alive${reset}"
+            LIST+=($i)
         else
-            echo "HOST : 172.100.0.${i:2} ... ${red}offline" 
+            echo "HOST : 172.100.0.$i ... ${red}offline${reset}" 
         fi      
     done
+    #echo ${LIST[@]}
 }
 
 
 run_node(){
-    for i in {0001..0015}; do 
-        #cd $WORKDIR/nodes/node$i
+    echo "After checking nodes. It's time to launch all nodes."
+    read -p "Press [Enter] to continue... or [Control + c] to stop..."
 
-        #oasis-node --config ./config.yml >> node.log 2>&1 &
-    #done
-    sshpass -p 'oasispc' ssh -o StrictHostKeyChecking=no root@${LIST[i]} "cd /oasis-vol/logs && oasis-node --config ./oasis-vol/localnet/nodes/node$i/config.yml >> node$i.log 2>&1 &"
+    for i in {1..14}; do 
+
+    v=$(printf "%04d" $i)
+    #echo $v
+    sleep 0.1
+    sshpass -p 'oasispc' ssh -o StrictHostKeyChecking=no root@172.100.0.${LIST[i]} "oasis-node --config ./oasis-vol/localnet/nodes/node$v/config.yml >> /oasis-vol/localnet/logs/node$v.log 2>&1 &"
+    echo "DEPLOY ${green} node$v ${reset} to ${green}172.100.0.${LIST[i]} ${reset}"
+    #v=10#$i
+    # v=${LIST[i]}
+    #echo "172.100.0.${LIST[i]}"
+    #echo "172.100.0.$((10#${LIST[i]}))"
+    #sshpass -p 'oasispc' ssh -o StrictHostKeyChecking=no root@172.100.0.${LIST[i]} "hostname -I"
     done
 }
 
-run_set_seed
+#run_set_seed
 
-#run_node
+run_check_node_alive
+run_node
 
 echo " --------"
 echo "|Done... |"
