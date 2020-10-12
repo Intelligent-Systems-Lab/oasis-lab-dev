@@ -28,9 +28,24 @@ run_set_seed(){
     done
 }
 
+
+red=`tput setaf 1`
+green=`tput setaf 2`
+
 run_check_node_alive(){
+    touch $WORKDIR/node_deploy_list.txt
+    DL=$WORKDIR/node_deploy_list.txt
+
+    LIST=()
+
     for i in {0001..0030}; do
-        if [ "`ping -c 1 some_ip_here`" ]        
+        if [ "ping -c 1 172.100.0.${i:2}" ]  
+        then
+            echo "HOST : 172.100.0.${i:2} ... ${green}alive"
+            LIST+=(172.100.0.${i:2})
+        else
+            echo "HOST : 172.100.0.${i:2} ... ${red}offline" 
+        fi      
     done
 }
 
@@ -41,7 +56,7 @@ run_node(){
 
         #oasis-node --config ./config.yml >> node.log 2>&1 &
     #done
-    sshpass -p 'oasispc' ssh -o StrictHostKeyChecking=no root@172.100.0.${i:2} "cd /oasis-vol/logs && oasis-node --config ./oasis-vol/localnet/nodes/node$i/config.yml >> node$i.log 2>&1 &"
+    sshpass -p 'oasispc' ssh -o StrictHostKeyChecking=no root@${LIST[i]} "cd /oasis-vol/logs && oasis-node --config ./oasis-vol/localnet/nodes/node$i/config.yml >> node$i.log 2>&1 &"
     done
 }
 
