@@ -57,7 +57,7 @@ run_node(){
     echo "After checking nodes. It's time to launch all nodes."
     read -p "Press [Enter] to continue... or [Control + c] to stop..."
 
-    for i in {1..5}; do 
+    for i in {1..10}; do 
 
     v=$(printf "%04d" $i)
     #echo $v
@@ -72,7 +72,7 @@ run_node(){
     done
 }
 
-#run_set_seed
+run_set_seed
 
 run_check_node_alive
 run_node

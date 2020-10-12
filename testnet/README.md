@@ -18,7 +18,7 @@ In terminal 1
 ```bash=
 git clone https://github.com/Intelligent-Systems-Lab/oasis-lab-dev.git
 
-cd oasis-lab-dev.git/testnet/genesis_preprocess/
+cd oasis-lab-dev/testnet/genesis_preprocess/
 
 bash run.sh
 ```
@@ -27,7 +27,7 @@ In terminal 2
 ```bash=
 cd /oasis-vol/localnet/nodes/node0000
 
-osais-node --config ./config.yml
+oasis-node --config ./config.yml
 
 # Find seed address here in logs.
 ```

@@ -81,6 +81,14 @@ run_setup_genesis_env(){
 
     cd $WORKDIR/genesis
 
+    # oasis-node genesis init \
+    #     --chain.id isltestnet \
+    #     --entity $WORKDIR/entities/entity0000/entity_genesis.json \
+    #     --entity $WORKDIR/entities/entity0001/entity_genesis.json \
+    #     --node $WORKDIR/nodes/node0000/node_genesis.json \
+    #     --node $WORKDIR/nodes/node0001/node_genesis.json \
+    #     --staking.token_symbol QAQ
+
     oasis-node genesis init \
         --chain.id isltestnet \
         --entity $WORKDIR/entities/entity0000/entity_genesis.json \
@@ -89,37 +97,23 @@ run_setup_genesis_env(){
         --entity $WORKDIR/entities/entity0003/entity_genesis.json \
         --entity $WORKDIR/entities/entity0004/entity_genesis.json \
         --entity $WORKDIR/entities/entity0005/entity_genesis.json \
+        --entity $WORKDIR/entities/entity0006/entity_genesis.json \
+        --entity $WORKDIR/entities/entity0007/entity_genesis.json \
+        --entity $WORKDIR/entities/entity0008/entity_genesis.json \
+        --entity $WORKDIR/entities/entity0009/entity_genesis.json \
+        --entity $WORKDIR/entities/entity0010/entity_genesis.json \
         --node $WORKDIR/nodes/node0000/node_genesis.json \
         --node $WORKDIR/nodes/node0001/node_genesis.json \
         --node $WORKDIR/nodes/node0002/node_genesis.json \
         --node $WORKDIR/nodes/node0003/node_genesis.json \
         --node $WORKDIR/nodes/node0004/node_genesis.json \
-        --node $WORKDIR/nodes/node0004/node_genesis.json \
+        --node $WORKDIR/nodes/node0005/node_genesis.json \
+        --node $WORKDIR/nodes/node0006/node_genesis.json \
+        --node $WORKDIR/nodes/node0007/node_genesis.json \
+        --node $WORKDIR/nodes/node0008/node_genesis.json \
+        --node $WORKDIR/nodes/node0009/node_genesis.json \
+        --node $WORKDIR/nodes/node0010/node_genesis.json \
         --staking.token_symbol QAQ
-
-    # oasis-node genesis init \
-    #     --chain.id isltestnet \
-    #     --entity $WORKDIR/entities/entity0000/entity_genesis.json \
-    #     --entity $WORKDIR/entities/entity0001/entity_genesis.json \
-    #     --entity $WORKDIR/entities/entity0002/entity_genesis.json \
-    #     --entity $WORKDIR/entities/entity0003/entity_genesis.json \
-    #     --entity $WORKDIR/entities/entity0004/entity_genesis.json \
-    #     --entity $WORKDIR/entities/entity0005/entity_genesis.json \
-    #     --entity $WORKDIR/entities/entity0006/entity_genesis.json \
-    #     --entity $WORKDIR/entities/entity0007/entity_genesis.json \
-    #     --entity $WORKDIR/entities/entity0008/entity_genesis.json \
-    #     --entity $WORKDIR/entities/entity0009/entity_genesis.json \
-    #     --node $WORKDIR/nodes/node0000/node_genesis.json \
-    #     --node $WORKDIR/nodes/node0001/node_genesis.json \
-    #     --node $WORKDIR/nodes/node0002/node_genesis.json \
-    #     --node $WORKDIR/nodes/node0003/node_genesis.json \
-    #     --node $WORKDIR/nodes/node0004/node_genesis.json \
-    #     --node $WORKDIR/nodes/node0005/node_genesis.json \
-    #     --node $WORKDIR/nodes/node0006/node_genesis.json \
-    #     --node $WORKDIR/nodes/node0007/node_genesis.json \
-    #     --node $WORKDIR/nodes/node0008/node_genesis.json \
-    #     --node $WORKDIR/nodes/node0009/node_genesis.json \
-    #     --staking.token_symbol QAQ
 
     # rejq is a tool to reformat json file. (see /rejq.sh)
     #rejq $WORKDIR/genesis/genesis.json
@@ -166,8 +160,10 @@ run_setup_config(){
         sed -i "s+{{ genesis.json_dir }}+$WORKDIR/genesis/genesis.json+" $WORKDIR/nodes/node$i/config.yml
         sed -i "s+{{ entity.json_dir }}+$WORKDIR/entities/entity$i/entity.json+" $WORKDIR/nodes/node$i/config.yml
 
-        sed -i "s+localhost:26656+$HOST_IP:26656+" $WORKDIR/nodes/node$i/config.yml
-        sed -i "s+{{ external_address }}:26656+$HOST_IP:26656+" $WORKDIR/nodes/node$i/config.yml
+        next_host=$((10#$i))
+        next_host=$((next_host+2))
+        sed -i "s+localhost:26656+172.100.0.$next_host:26656+" $WORKDIR/nodes/node$i/config.yml
+        sed -i "s+{{ external_address }}:26656+172.100.0.$next_host:25565+" $WORKDIR/nodes/node$i/config.yml
     done
 
     sed -i "s+- \"{{ seed_node_address }}\"+#- \"{{ seed_node_address }}\"+" $WORKDIR/nodes/node0000/config.yml
