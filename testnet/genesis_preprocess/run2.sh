@@ -28,13 +28,21 @@ run_set_seed(){
     done
 }
 
-run_node(){
-    for i in {0001..0002}; do 
-        cd $WORKDIR/nodes/node$i
-
-        oasis-node --config ./config.yml >> node.log 2>&1 &
+run_check_node_alive(){
+    for i in {0001..0030}; do
+        if [ "`ping -c 1 some_ip_here`" ]        
     done
-    sshpass -p 'oasispc' ssh root@172.100.0.5 "cd /oasis-vol/logs && oasis-node --config ./oasis-vol/localnet/nodes/node0001/config.yml >> node0000.log 2>&1 &"
+}
+
+
+run_node(){
+    for i in {0001..0015}; do 
+        #cd $WORKDIR/nodes/node$i
+
+        #oasis-node --config ./config.yml >> node.log 2>&1 &
+    #done
+    sshpass -p 'oasispc' ssh -o StrictHostKeyChecking=no root@172.100.0.${i:2} "cd /oasis-vol/logs && oasis-node --config ./oasis-vol/localnet/nodes/node$i/config.yml >> node$i.log 2>&1 &"
+    done
 }
 
 run_set_seed

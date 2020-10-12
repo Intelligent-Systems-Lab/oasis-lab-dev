@@ -19,6 +19,7 @@ REPODIR=$(pwd)
 NODELIST=/nodelist.txt
 
 mkdir -p $WORKDIR
+mkdir -p $WORKDIR/logs
 
 #LOCAL_IP=$(hostname -I)
 #LOCAL_IP=${STATIC_IP% }
