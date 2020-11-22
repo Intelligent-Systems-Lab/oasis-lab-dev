@@ -24,7 +24,7 @@
     "epochtime": {
       "base": 0,
       "params": {
-        "interval": 600
+        "interval": 60
       }
     },
     "extra_data": null,
@@ -1674,7 +1674,7 @@
           "node-keymanager": "100000000000",
           "node-storage": "100000000000",
           "node-validator": "100000000000",
-          "runtime-compute": "50000000000000",
+          "runtime-compute": "500000000000",
           "runtime-keymanager": "50000000000000"
         }
       },

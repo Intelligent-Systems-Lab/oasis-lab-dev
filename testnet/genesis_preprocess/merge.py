@@ -19,7 +19,7 @@ if genesis_path==example_path or genesis_path==None or example_path==None:
     sys.exit("File error.")
 
 ################
-leger_example= '{"oasis1": {"escrow": {"active": {"balance": "200000000000","total_shares": "5000000000000000"},"commission_schedule": {"bounds": [{"rate_max": "20000","rate_min": "0"}],"rates": [{"rate": "5000"}]},"debonding": {"balance": "0","total_shares": "0"},"stake_accumulator": {}},"general": {"balance": "100000000000"}}}'
+leger_example= '{"oasis1": {"escrow": {"active": {"balance": "500000000000","total_shares": "5000000000000000"},"commission_schedule": {"bounds": [{"rate_max": "20000","rate_min": "0"}],"rates": [{"rate": "5000"}]},"debonding": {"balance": "0","total_shares": "0"},"stake_accumulator": {}},"general": {"balance": "1500000000000"}}}'
 
 delegations_exp = '{"oasis1": {"oasis2": {"shares": "4000000000000000"},"oasis3": {"shares": "1000000000000000"}}}'
 ################
@@ -99,7 +99,7 @@ for i in json.loads(leger_str):
 
 #print(json_gene_total)
 
-json_common_pool = json_gene_total - len(json.loads(leger_str))*300000000000
+json_common_pool = json_gene_total - len(json.loads(leger_str))*3000000000000
 
 json_exp['staking']['common_pool'] = str(json_common_pool)
  
