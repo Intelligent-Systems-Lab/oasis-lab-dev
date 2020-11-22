@@ -9,6 +9,7 @@ services:
             - oasis-net
         ports:
             - '8022:22'
+            # - '26656:26656'
 
         stdin_open: true
         tty: true
@@ -267,7 +268,8 @@ services:
             - oasis-vol1:/oasis-vol
         networks: 
             - oasis-net
-
+        ports:
+            - '8122:22'
         depends_on: 
             - oasis-node19
 
