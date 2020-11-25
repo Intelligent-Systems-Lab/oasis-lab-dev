@@ -38,6 +38,9 @@ ENV HOME="/root"
 ENV GOPATH="/go"
 ENV PATH="${HOME}/.cargo/bin:/go/bin:/usr/local/go/bin:${PATH}"
 
+RUN echo "export PATH=\$PATH:/go/bin:/usr/local/go/bin" >>  /root/.bashrc &&\
+    echo "export GOPATH=/go" >>  /root/.bashrc
+
 # Install protobuf (apt system v3.0 fails to compile our protos).
 RUN wget https://github.com/google/protobuf/releases/download/v${GO_PROTOC_VERSION}/protoc-${GO_PROTOC_VERSION}-linux-x86_64.zip && \
     unzip protoc-${GO_PROTOC_VERSION}-linux-x86_64.zip -x readme.txt -d /usr && \

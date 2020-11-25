@@ -94,8 +94,19 @@ oasis-node consensus submit_tx   -a $ADDR   --transaction.file tx_transfer.json
 
 Done.
 
+## Add node 
+
+[Adding or Removing Nodes](https://docs.oasis.dev/general/run-a-node/maintenance-guides/adding-or-removing-nodes)
+
+```bash=
+# launch another node in new contrainer
+docker run -it -p 8122:22 --name oasis1 tony92151/oasis-docker
+
+```
+
 ## Oasis explore
 
 Still working :coffee: :coffee:
+
 
 

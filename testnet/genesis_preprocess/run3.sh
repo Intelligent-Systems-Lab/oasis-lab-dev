@@ -67,7 +67,7 @@ read -p "Remote endpoint : "  REMOTE_ENDPOINT
 sed -i "s+{{ node_dir }}+$WORKDIR/node+" $WORKDIR/etc/config.yml
 sed -i "s+{{ genesis.json_dir }}+$WORKDIR/etc/genesis.json+" $WORKDIR/etc/config.yml
 sed -i "s+{{ entity.json_dir }}+$WORKDIR/entity/entity.json+" $WORKDIR/etc/config.yml
-sed -i "s+{{ external_address }}:26656+$REMOTE_ENDPOINT+" $WORKDIR/etc/config.yml
+#sed -i "s+{{ external_address }}:26656+$REMOTE_ENDPOINT+" $WORKDIR/etc/config.yml
 
 echo "RUN NODE!!"
 echo "oasis-node --config $WORKDIR/etc/config.yml"

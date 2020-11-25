@@ -19,7 +19,7 @@ NODELIST=/nodelist.txt
 
 
 run_set_seed(){
-    read -p "Enter new public key: "  SEED
+    read -p "Enter address : "  SEED
 
     for i in {0001..0009}; do 
         cd $WORKDIR/nodes/node$i
